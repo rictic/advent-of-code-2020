@@ -1,10 +1,9 @@
 #![allow(dead_code)]
 
-fn problem(input: &str) -> Option<i64> {
-  let mut compliments = std::collections::HashSet::with_capacity(input.len() / 4);
-  let list: Vec<i64> = input.trim().lines().map(|s| s.parse().unwrap()).collect();
+fn multiply_those_that_sum_to(list: &Vec<i64>, target: i64) -> Option<i64> {
+  let mut compliments = std::collections::HashSet::with_capacity(list.len());
   for k in list {
-    let compliment = 2020 - k;
+    let compliment = target - k;
     compliments.insert(compliment);
     if compliments.contains(&k) {
       return Some(k * compliment);
@@ -13,15 +12,16 @@ fn problem(input: &str) -> Option<i64> {
   None
 }
 
+fn problem(input: &str) -> Option<i64> {
+  let list = &input.trim().lines().map(|s| s.parse().unwrap()).collect();
+  multiply_those_that_sum_to(list, 2020)
+}
+
 fn problem_part_2(input: &str) -> Option<i64> {
-  let vals: Vec<i64> = input.trim().lines().map(|s| s.parse().unwrap()).collect();
-  for a in vals.iter() {
-    for b in vals.iter() {
-      for c in vals.iter() {
-        if a != b && b != c && (a + b + c == 2020) {
-          return Some(a * b * c);
-        }
-      }
+  let list: Vec<i64> = input.trim().lines().map(|s| s.parse().unwrap()).collect();
+  for a in list.iter() {
+    if let Some(result) = multiply_those_that_sum_to(&list, 2020 - a) {
+      return Some(a * result);
     }
   }
   None
