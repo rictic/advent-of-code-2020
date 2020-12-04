@@ -19,26 +19,32 @@ impl PassportField {
     match (self, value) {
       (CountryId, _) => true,
       (_, None) => false,
-      (BirthYear, Some(s)) => s
+      (_, Some(s)) => self.validate_value(s),
+    }
+  }
+
+  fn validate_value(&self, value: &str) -> bool {
+    match self {
+      BirthYear => value
         .parse()
         .map(|v: u16| v >= 1920 && v <= 2002)
         .unwrap_or(false),
-      (IssueYear, Some(s)) => s
+      IssueYear => value
         .parse()
         .map(|v: u16| v >= 2010 && v <= 2020)
         .unwrap_or(false),
-      (ExpirationYear, Some(s)) => s
+      ExpirationYear => value
         .parse()
         .map(|v: u16| v >= 2020 && v <= 2030)
         .unwrap_or(false),
-      (Height, Some(s)) => {
-        let in_cm = match &s[s.len() - 2..] {
+      Height => {
+        let in_cm = match &value[value.len() - 2..] {
           "cm" => true,
           "in" => false,
           _ => return false,
         };
 
-        s[0..s.len() - 2]
+        value[0..value.len() - 2]
           .parse()
           .map(|v: u16| {
             if in_cm {
@@ -49,22 +55,22 @@ impl PassportField {
           })
           .unwrap_or(false)
       }
-      (HairColor, Some(s)) => {
-        //hcl (Hair Color) - a # followed by exactly six characters 0-9 or a-f.
-        if s.len() != 7 {
+      HairColor => {
+        if value.len() != 7 {
           return false;
         }
-        let mut chars = s.chars();
+        let mut chars = value.chars();
         if Some('#') != chars.next() {
           return false;
         }
         chars.all(|c| c.is_digit(16))
       }
-      (EyeColor, Some(s)) => match s {
+      EyeColor => match value {
         "amb" | "blu" | "brn" | "gry" | "grn" | "hzl" | "oth" => true,
         _ => false,
       },
-      (PassportId, Some(s)) => s.len() == 9 && s.chars().all(|c| c.is_ascii_digit()),
+      PassportId => value.len() == 9 && value.chars().all(|c| c.is_ascii_digit()),
+      CountryId => true,
     }
   }
 }
