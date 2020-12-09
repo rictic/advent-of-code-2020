@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 struct Index {
   plane_partitionings: [PlanePartitioning; 7],
   row_partitionings: [RowPartitioning; 3],
@@ -145,7 +143,7 @@ impl Row {
   }
 }
 
-fn problem(input: &str) -> usize {
+pub fn problem(input: &str) -> usize {
   let mut plane = Plane::new();
   input
     .trim()
@@ -155,7 +153,7 @@ fn problem(input: &str) -> usize {
     .unwrap()
 }
 
-fn problem_part_2(input: &str) -> usize {
+pub fn problem_part_2(input: &str) -> usize {
   let mut plane = Plane::new();
   let tickets = input.trim().lines().map(|line| Index::parse(line));
   for ticket in tickets {

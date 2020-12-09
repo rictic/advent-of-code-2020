@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use std::collections::BTreeSet;
 
 #[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, Debug)]
@@ -94,13 +92,13 @@ impl Computer {
   }
 }
 
-fn problem(input: &str) -> i64 {
+pub fn problem(input: &str) -> i64 {
   let mut computer = Computer::parse_from_instructions(input.trim());
   computer.simple_infinite_loop_detector();
   computer.accumulator
 }
 
-fn problem_part_2(input: &str) -> Option<i64> {
+pub fn problem_part_2(input: &str) -> Option<i64> {
   let base_instructions = Computer::parse_from_instructions(input.trim()).instructions;
   for idx in 0..base_instructions.len() {
     let mut instructions = base_instructions.clone();

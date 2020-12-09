@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 type Point = (usize, usize);
 
 struct Map {
@@ -41,11 +39,11 @@ impl Map {
   }
 }
 
-fn problem(input: &str) -> usize {
+pub fn problem(input: &str) -> usize {
   Map::parse(input).count_trees_along_slope((3, 1))
 }
 
-fn problem_part_2(input: &str) -> usize {
+pub fn problem_part_2(input: &str) -> usize {
   let map = Map::parse(input);
   let slopes = [(1, 1), (3, 1), (5, 1), (7, 1), (1, 2)];
   slopes

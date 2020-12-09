@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use enum_map::EnumMap;
 use PassportField::*;
 
@@ -134,7 +132,7 @@ impl<'a> PassportCandidate<'a> {
   }
 }
 
-fn problem(input: &str) -> usize {
+pub fn problem(input: &str) -> usize {
   input
     .trim_end()
     .split("\n\n")
@@ -143,7 +141,7 @@ fn problem(input: &str) -> usize {
     .count()
 }
 
-fn problem_part_2(input: &str) -> usize {
+pub fn problem_part_2(input: &str) -> usize {
   input
     .trim_end()
     .split("\n\n")

@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 fn multiply_those_that_sum_to(list: &Vec<i64>, target: i64) -> Option<i64> {
   let mut compliments = std::collections::HashSet::with_capacity(list.len());
   for k in list {
@@ -12,12 +10,12 @@ fn multiply_those_that_sum_to(list: &Vec<i64>, target: i64) -> Option<i64> {
   None
 }
 
-fn problem(input: &str) -> Option<i64> {
+pub fn problem(input: &str) -> Option<i64> {
   let list = &input.trim().lines().map(|s| s.parse().unwrap()).collect();
   multiply_those_that_sum_to(list, 2020)
 }
 
-fn problem_part_2(input: &str) -> Option<i64> {
+pub fn problem_part_2(input: &str) -> Option<i64> {
   let list: Vec<i64> = input.trim().lines().map(|s| s.parse().unwrap()).collect();
   for a in list.iter() {
     if let Some(result) = multiply_those_that_sum_to(&list, 2020 - a) {

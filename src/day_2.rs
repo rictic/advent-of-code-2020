@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use regex::Regex;
 
 struct ConstrainedPassword {
@@ -26,7 +24,7 @@ impl ConstrainedPassword {
   }
 }
 
-fn problem(input: &str) -> Option<usize> {
+pub fn problem(input: &str) -> Option<usize> {
   let regex = Regex::new(r"(\d+)-(\d+) (.): (.*)").unwrap();
 
   let list: Vec<_> = input
@@ -45,7 +43,7 @@ fn problem(input: &str) -> Option<usize> {
   Some(list.iter().filter(|p| p.is_valid()).count())
 }
 
-fn problem_part_2(input: &str) -> Option<usize> {
+pub fn problem_part_2(input: &str) -> Option<usize> {
   let regex = Regex::new(r"(\d+)-(\d+) (.): (.*)").unwrap();
   let list: Vec<_> = input
     .trim()

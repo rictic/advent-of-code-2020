@@ -1,8 +1,6 @@
-#![allow(dead_code)]
-
 use std::collections::BTreeSet;
 
-fn problem(input: &str) -> usize {
+pub fn problem(input: &str) -> usize {
   input
     .split("\n\n")
     .map(|group| {
@@ -17,7 +15,7 @@ fn problem(input: &str) -> usize {
     .sum()
 }
 
-fn problem_part_2(input: &str) -> usize {
+pub fn problem_part_2(input: &str) -> usize {
   input
     .trim()
     .split("\n\n")

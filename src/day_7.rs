@@ -1,5 +1,3 @@
-#![allow(dead_code)]
-
 use regex::Regex;
 use Adjective::*;
 use Hue::*;
@@ -237,14 +235,14 @@ impl Ruleset {
   }
 }
 
-fn problem(input: &str) -> usize {
+pub fn problem(input: &str) -> usize {
   let rules: Vec<_> = input.lines().map(|line| Rule::parse(line)).collect();
   let ruleset = Ruleset::new(rules);
   let toplevel_options = ruleset.toplevel_bag_options(Color::parse("shiny gold"));
   toplevel_options.len()
 }
 
-fn problem_part_2(input: &str) -> usize {
+pub fn problem_part_2(input: &str) -> usize {
   let rules: Vec<_> = input.lines().map(|line| Rule::parse(line)).collect();
   let ruleset = Ruleset::new(rules);
   ruleset.nested_contents_count(Color::parse("shiny gold"))
