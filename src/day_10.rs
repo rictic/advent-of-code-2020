@@ -8,7 +8,6 @@ pub fn problem(input: &str) -> u64 {
   let mut one_diffs: u64 = 0;
   let mut three_diffs: u64 = 1; // one to account for the final diff
   let mut current_jolts = 0;
-  println!("{:?}", nums);
   for num in nums {
     let diff = num - current_jolts;
     if diff == 1 {
@@ -23,10 +22,6 @@ pub fn problem(input: &str) -> u64 {
     }
     current_jolts = num;
   }
-  println!(
-    "Found {} diffs of size one, {} of size three",
-    one_diffs, three_diffs
-  );
   one_diffs * three_diffs
 }
 
