@@ -90,7 +90,7 @@ mod test {
 
   #[test]
   fn part_2_my_input() {
-    assert_eq!(0, problem_part_2(MY_INPUT));
+    assert_eq!(5289227976704, problem_part_2(MY_INPUT));
   }
 
   const EXAMPLE: &'static str = "\
